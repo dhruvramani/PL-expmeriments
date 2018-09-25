@@ -187,7 +187,8 @@ np.savetxt('loss.txt', loss, delimiter=' ')
 np.savetxt('val_loss.txt', val_loss, delimiter=' ')
 
 
-''''plt.figure(0)
+'''
+plt.figure(0)
 plt.plot(cnn.history['acc'],'r')
 plt.plot(cnn.history['val_acc'],'g')
 plt.xticks(np.arange(0, 11, 2.0))
@@ -195,9 +196,11 @@ plt.rcParams['figure.figsize'] = (8, 6)
 plt.xlabel("Num of Epochs")
 plt.ylabel("Accuracy")
 plt.title("Training Accuracy vs Validation Accuracy")
-plt.legend(['train','validation'])''''
+plt.legend(['train','validation'])
+'''
 
-'''plt.figure(1)
+'''
+plt.figure(1)
 plt.plot(cnn.history['loss'],'r')
 plt.plot(cnn.history['val_loss'],'g')
 plt.xticks(np.arange(0, 11, 2.0))
@@ -206,7 +209,8 @@ plt.xlabel("Num of Epochs")
 plt.ylabel("Loss")
 plt.title("Training Loss vs Validation Loss")
 plt.legend(['train','validation'])
-plt.show()'''
+plt.show()
+'''
 
 scores = cnn_n.evaluate(x_test, y_test, verbose=0)
 print("Accuracy: %.2f%%" % (scores[1]*100))
@@ -233,4 +237,5 @@ df_cm = pd.DataFrame(cm, range(10),
 plt.figure(figsize = (10,7))
 sn.set(font_scale=1.4)#for label size
 sn.heatmap(df_cm, annot=True,annot_kws={"size": 12})# font size
-plt.show()'''
+plt.show()
+'''
