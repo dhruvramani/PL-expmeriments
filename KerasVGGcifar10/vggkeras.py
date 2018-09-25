@@ -40,7 +40,7 @@ BATCH_NORM = False
 
 batch_size = 64
 num_classes = 10
-epochs = 25
+epochs = 50
 data_augmentation = True
 
 (x_train, y_train), (x_test, y_test) = cifar10.load_data() # x_train - training data(images), y_train - labels(digits)
@@ -163,7 +163,7 @@ def base_model():
     model.add(BatchNormalization()) if BATCH_NORM else None
     model.add(Activation('softmax'))
 
-    sgd = SGD(lr=0.0005, decay=0, nesterov=True)
+    sgd = SGD(lr=0.01, decay=0, nesterov=True)
 
     model.compile(loss='categorical_crossentropy', optimizer=sgd, metrics=['accuracy'])
     return model
