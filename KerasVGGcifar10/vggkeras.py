@@ -11,7 +11,7 @@ from keras.layers.convolutional import Conv2D, MaxPooling2D, ZeroPadding2D
 from keras.layers.normalization import BatchNormalization
 from keras.initializers import glorot_normal
 from keras.utils import np_utils
-from keras_sequential_ascii import sequential_model_to_ascii_printout
+#from keras_sequential_ascii import sequential_model_to_ascii_printout
 from keras import backend as K
 from advanced_activations import ParametricLog
 
@@ -22,12 +22,13 @@ if K.backend()=='tensorflow':
 import tensorflow as tf
 import multiprocessing as mp
 
-core_num = mp.cpu_count()
+'''core_num = mp.cpu_count()
 print(core_num)
 config = tf.ConfigProto(
     inter_op_parallelism_threads=core_num,
     intra_op_parallelism_threads=core_num)
-sess = tf.Session(config=config)
+'''
+sess = tf.Session() #config=config)
 
 # Loading the CIFAR-10 dataset
 
@@ -50,7 +51,7 @@ print(x_test.shape[0], 'test samples')
 class_names = ['airplane','automobile','bird','cat','deer',
                'dog','frog','horse','ship','truck']
 
-
+'''
 fig = plt.figure(figsize=(8,3))
 for i in range(num_classes):
     ax = fig.add_subplot(2, 5, 1 + i, xticks=[], yticks=[])
@@ -61,7 +62,7 @@ for i in range(num_classes):
     ax.set_title(class_names[i])
     plt.imshow(im)
 plt.show()
-
+'''
 # Convert and pre-processing
 
 y_train = np_utils.to_categorical(y_train, num_classes)
@@ -174,7 +175,7 @@ cnn = cnn_n.fit(x_train, y_train, batch_size=batch_size, epochs=epochs, validati
 
 # Vizualizing model structure
 
-sequential_model_to_ascii_printout(cnn_n)
+#sequential_model_to_ascii_printout(cnn_n)
 
 # Plots for trainng and testing process: loss and accuracy
 
