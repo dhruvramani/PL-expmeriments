@@ -34,73 +34,73 @@ class cifar10vgg:
 
         model.add(Conv2D(64, (3, 3), padding='same',
                          input_shape=self.x_shape,kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
         model.add(Dropout(0.3))
 
         model.add(Conv2D(64, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
         model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
         model.add(Dropout(0.4))
 
         model.add(Conv2D(128, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
         model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
         model.add(Dropout(0.4))
 
         model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
         model.add(Dropout(0.4))
 
         model.add(Conv2D(256, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-
-        model.add(MaxPooling2D(pool_size=(2, 2)))
-
-
-        model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.4))
-
-        model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
-        model.add(BatchNormalization())
-        model.add(Dropout(0.4))
-
-        model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
 
 
         model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
         model.add(Dropout(0.4))
 
         model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
         model.add(Dropout(0.4))
 
         model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
+        model.add(BatchNormalization())
+
+        model.add(MaxPooling2D(pool_size=(2, 2)))
+
+
+        model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        model.add(ParametricLog()) #Activation('relu'))
+        model.add(BatchNormalization())
+        model.add(Dropout(0.4))
+
+        model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        model.add(ParametricLog()) #Activation('relu'))
+        model.add(BatchNormalization())
+        model.add(Dropout(0.4))
+
+        model.add(Conv2D(512, (3, 3), padding='same',kernel_regularizer=regularizers.l2(weight_decay)))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
 
         model.add(MaxPooling2D(pool_size=(2, 2)))
@@ -108,7 +108,7 @@ class cifar10vgg:
 
         model.add(Flatten())
         model.add(Dense(512,kernel_regularizer=regularizers.l2(weight_decay)))
-        model.add(Activation('relu'))
+        model.add(ParametricLog()) #Activation('relu'))
         model.add(BatchNormalization())
 
         model.add(Dropout(0.5))
@@ -147,7 +147,7 @@ class cifar10vgg:
 
         #training parameters
         batch_size = 128
-        maxepoches = 1
+        maxepoches = 250
         learning_rate = 0.1
         lr_decay = 1e-6
         lr_drop = 20
@@ -194,9 +194,9 @@ class cifar10vgg:
                             nb_epoch=maxepoches,
                             validation_data=(x_test, y_test),callbacks=[reduce_lr],verbose=2)
         
-        print(model.history.history)
-        acc, val_acc = model.history['acc'], model.history['val_acc']
-        loss, val_loss = model.history['loss'], model.history['val_loss']
+        #print(model.history.history)
+        acc, val_acc = model.history.history['acc'], model.history.history['val_acc']
+        loss, val_loss = model.history.history['loss'], model.history.history['val_loss']
 
         np.savetxt('acc.txt', acc, delimiter='\n')
         np.savetxt('val_acc.txt', val_acc, delimiter='\n')
