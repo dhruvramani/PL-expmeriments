@@ -194,7 +194,7 @@ class cifar10vgg:
                             nb_epoch=maxepoches,
                             validation_data=(x_test, y_test),callbacks=[reduce_lr],verbose=2)
         
-        print(model.history)
+        print(model.history.history)
         acc, val_acc = model.history['acc'], model.history['val_acc']
         loss, val_loss = model.history['loss'], model.history['val_loss']
 
