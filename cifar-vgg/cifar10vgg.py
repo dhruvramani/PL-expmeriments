@@ -12,11 +12,12 @@ from keras import backend as K
 from keras import regularizers
 from advanced_activations import ParametricLog
 
+'''
 import tensorflow as tf
 from keras.backend.tensorflow_backend import set_session
 config = tf.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.3
-set_session(tf.Session(config=config))
+set_session(tf.Session(config=config)) '''
 
 class cifar10vgg:
     def __init__(self,train=True):
