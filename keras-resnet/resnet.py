@@ -20,12 +20,17 @@ from keras import backend as K
 from advanced_activations import ParametricLog
 
 
-def _bn_relu(inpu, batch_norm=True):
+def _bn_relu(inpu, batch_norm=True, pl=True):
     """Helper to build a BN -> relu block
     """
     if(batch_norm):
         inpu = BatchNormalization(axis=CHANNEL_AXIS)(inpu)
-    return Activation("relu")(inpu) #ParametricLog()(inpu)
+        if(pl):
+            inpu = inpu + tf.reduce_mean(inpu) + 1
+
+    if(pl):
+        return ParametricLog()(inpu)
+    return Activation("relu")(inpu) 
 
 
 def _conv_bn_relu(**conv_params):
