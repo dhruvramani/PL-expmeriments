@@ -25,9 +25,6 @@ def _bn_relu(inpu, batch_norm=True, pl=True):
     """
     if(batch_norm):
         inpu = BatchNormalization(axis=CHANNEL_AXIS)(inpu)
-        if(pl):
-            inpu = inpu + K.abs(K.min(inpu)) + 1
-
     if(pl):
         return ParametricLog()(inpu)
     return Activation("relu")(inpu) 
