@@ -27,7 +27,7 @@ csv_logger = CSVLogger('resnet18_cifar10.csv')
 
 batch_size = 32
 nb_classes = 10
-nb_epoch = 1
+nb_epoch = 200
 data_augmentation = True
 
 # input image dimensions
