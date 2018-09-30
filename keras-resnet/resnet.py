@@ -26,7 +26,7 @@ def _bn_relu(inpu, batch_norm=True, pl=True):
     if(batch_norm):
         inpu = BatchNormalization(axis=CHANNEL_AXIS)(inpu)
         if(pl):
-            inpu = inpu + tf.reduce_mean(inpu) + 1
+            inpu = inpu + K.abs(K.min(inpu)) + 1
 
     if(pl):
         return ParametricLog()(inpu)
