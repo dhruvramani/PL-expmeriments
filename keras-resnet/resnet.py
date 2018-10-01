@@ -23,11 +23,13 @@ from advanced_activations import ParametricLog
 def _bn_relu(inpu, batch_norm=True, pl=True):
     """Helper to build a BN -> relu block
     """
+    if(pl):
+        inpu =  ParametricLog()(inpu)
+    else :
+        inpu = Activation("relu")(inpu) 
     if(batch_norm):
         inpu = BatchNormalization(axis=CHANNEL_AXIS)(inpu)
-    if(pl):
-        return ParametricLog()(inpu)
-    return Activation("relu")(inpu) 
+    return inpu
 
 
 def _conv_bn_relu(**conv_params):
