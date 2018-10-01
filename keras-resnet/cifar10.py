@@ -9,7 +9,7 @@ from __future__ import print_function
 from keras.datasets import cifar10
 from keras.preprocessing.image import ImageDataGenerator
 from keras.utils import np_utils
-from keras.callbacks import ReduceLROnPlateau, CSVLogger, EarlyStopping
+from keras.callbacks import CSVLogger#, ReduceLROnPlateau, EarlyStopping
 
 import numpy as np
 import resnet
@@ -21,9 +21,9 @@ config = tf.ConfigProto()
 config.gpu_options.per_process_gpu_memory_fraction = 0.5
 set_session(tf.Session(config=config)) 
 
-lr_reducer = ReduceLROnPlateau(factor=np.sqrt(0.1), cooldown=0, patience=5, min_lr=0.5e-6)
-early_stopper = EarlyStopping(min_delta=0.001, patience=10)
-csv_logger = CSVLogger('resnet18_cifar10.csv')
+#lr_reducer = ReduceLROnPlateau(factor=np.sqrt(0.1), cooldown=0, patience=5, min_lr=0.5e-6)
+#early_stopper = EarlyStopping(min_delta=0.001, patience=10)
+csv_logger = CSVLogger('./resnet18_cifar10.csv')
 
 batch_size = 32
 nb_classes = 10
@@ -64,7 +64,7 @@ if not data_augmentation:
               nb_epoch=nb_epoch,
               validation_data=(X_test, Y_test),
               shuffle=True,
-              callbacks=[lr_reducer, early_stopper, csv_logger])
+              callbacks=[csv_logger]) # lr_reducer, early_stopper,
 else:
     print('Using real-time data augmentation.')
     # This will do preprocessing and realtime data augmentation:
@@ -89,7 +89,7 @@ else:
                         steps_per_epoch=X_train.shape[0] // batch_size,
                         validation_data=(X_test, Y_test),
                         epochs=nb_epoch, verbose=1, max_q_size=100,
-                        callbacks=[lr_reducer, early_stopper, csv_logger])
+                        callbacks=[csv_logger]) #lr_reducer, early_stopper,
 
 acc, val_acc = model.history.history['acc'], model.history.history['val_acc']
 loss, val_loss = model.history.history['loss'], model.history.history['val_loss']
