@@ -302,8 +302,9 @@ class ParametricLog(Layer):
         self.built = True
 
     def call(self, inputs):
-        pos = K.log(K.relu(inputs) + self.posConst + 1e-8)
-        neg =  - K.log(-(inputs - K.abs(inputs)) * 0.5 + self.negConst +  1e-8)
+        #inputs = inputs + K.abs(K.min(inputs)) + 1
+        pos = K.log(K.relu(inputs + self.posConst) + 1)
+        neg =  - K.log(K.relu( -(inputs - K.abs(inputs)) * 0.5 + self.negConst ) +  1)
         return pos + neg
 
     def get_config(self):
