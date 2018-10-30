@@ -5,8 +5,8 @@ from torch.autograd import Variable
 class ParametricLog(torch.nn.Module):
     def __init__(self, shape):
         super(ParametricLog, self).__init__()
-        self.c1 = Variable(torch.random_normal(shape)) # TODO : change this
-        self.c2 = Variable(torch.random_normal(shape))
+        self.c1 = Variable(torch.randn(shape)) # TODO : change this
+        self.c2 = Variable(torch.randn(shape))
 
     def forward(self, x):
         pos = torch.log(F.relu(x + self.c1) + 1)
