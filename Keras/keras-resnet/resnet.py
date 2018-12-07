@@ -19,8 +19,8 @@ from keras.regularizers import l2
 from keras import backend as K
 from advanced_activations import ParametricLog
 
-
-def _bn_relu(inpu, batch_norm=True, pl=True):
+# PL = True, bn = False
+def _bn_relu(inpu, batch_norm=False, pl=True):
     """Helper to build a BN -> relu block
     """
     if(pl):
