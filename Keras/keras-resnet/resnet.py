@@ -20,7 +20,7 @@ from keras import backend as K
 from advanced_activations import ParametricLog
 
 # PL = False, bn = False
-def _bn_relu(inpu, batch_norm=False, pl=False):
+def _bn_relu(inpu, batch_norm=False, pl=True):
     """Helper to build a BN -> relu block
     """
     if(pl):
