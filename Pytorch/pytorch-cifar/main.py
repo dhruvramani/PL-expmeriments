@@ -14,7 +14,7 @@ import os
 import argparse
 
 #from models import *
-from resnet_pl import ResNet50
+from resnet import ResNet50
 from utils import progress_bar
 
 
