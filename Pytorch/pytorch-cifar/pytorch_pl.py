@@ -10,6 +10,8 @@ class ParametricLog(torch.nn.Module):
         super(ParametricLog, self).__init__()
         self.c1 = torch.zeros(1, 1) #Variable(torch.randn(shape)) # TODO : change this
         self.c2 = torch.zeros(1, 1) #Variable(torch.randn(shape)
+        self.c1 = self.c1.to(device)
+        self.c2 = self.c2.to(device)
 
     def forward(self, x):
         if(self.c1 == torch.zeros(1, 1) or self.c2 == torch.zeros(1, 1)):
