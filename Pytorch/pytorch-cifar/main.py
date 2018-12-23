@@ -79,6 +79,12 @@ if args.resume:
 criterion = nn.CrossEntropyLoss()
 optimizer = optim.SGD(net.parameters(), lr=args.lr, momentum=0.9, weight_decay=5e-4)
 
+with open("./logs/train_loss.log", "w+") as lfile:
+    pass
+
+with open("./logs/train_acc.log", "w+") as afile:
+    pass
+
 # Training
 def train(epoch):
     print('\nEpoch: %d' % epoch)
