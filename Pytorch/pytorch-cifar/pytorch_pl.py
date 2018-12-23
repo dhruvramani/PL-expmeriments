@@ -8,11 +8,11 @@ device = 'cuda' if torch.cuda.is_available() else 'cpu'
 class ParametricLog(torch.nn.Module):
     def __init__(self):
         super(ParametricLog, self).__init__()
-        self.c1 = None #Variable(torch.randn(shape)) # TODO : change this
-        self.c2 = None #Variable(torch.randn(shape)
+        self.c1 = torch.zeros(1, 1) #Variable(torch.randn(shape)) # TODO : change this
+        self.c2 = torch.zeros(1, 1) #Variable(torch.randn(shape)
 
     def forward(self, x):
-        if(self.c1 == None or self.c2 == None):
+        if(self.c1 == torch.zeros(1, 1) or self.c2 == torch.zeros(1, 1)):
             self.c1 = Variable(torch.randn(x.shape))
             self.c2 = Variable(torch.randn(x.shape))
             self.c1 = self.c1.to(device)
