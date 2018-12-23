@@ -128,7 +128,7 @@ def test(epoch):
     with torch.no_grad():
         for batch_idx, (inputs, targets) in enumerate(testloader):
             inputs, targets = inputs.to(device), targets.to(device)
-            if(inputs.shape[0] != 64):
+            if(inputs.shape[0] != 30):
                 continue
             outputs = net(inputs)
             loss = criterion(outputs, targets)
