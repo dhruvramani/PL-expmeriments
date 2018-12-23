@@ -9,15 +9,15 @@ class ParametricLog(torch.nn.Module):
     def __init__(self):
         super(ParametricLog, self).__init__()
         self.c1 = None #Variable(torch.randn(shape)) # TODO : change this
-        self.c2 = None #Variable(torch.randn(shape))
-        self.c1 = self.c1.to(device)
-        self.c2 = self.c2.to(device)
+        self.c2 = None #Variable(torch.randn(shape)
 
     def forward(self, x):
         if(self.c1 == None or self.c2 == None):
-            print(x.shape)
             self.c1 = Variable(torch.randn(x.shape))
             self.c2 = Variable(torch.randn(x.shape))
+            self.c1 = self.c1.to(device)
+            self.c2 = self.c2.to(device)
+
         pos = torch.log(F.relu(x + self.c1) + 1)
         neg = - torch.log(F.relu(-(x - torch.abs(x)) * 0.5 + self.c2) + 1)
         return pos + neg
