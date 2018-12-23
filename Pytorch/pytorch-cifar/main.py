@@ -94,6 +94,8 @@ def train(epoch):
     total = 0
     for batch_idx, (inputs, targets) in enumerate(trainloader):
         inputs, targets = inputs.to(device), targets.to(device)
+        if(inputs.shape[0] != 64):
+            continue
         optimizer.zero_grad()
         outputs = net(inputs)
         loss = criterion(outputs, targets)
@@ -126,6 +128,8 @@ def test(epoch):
     with torch.no_grad():
         for batch_idx, (inputs, targets) in enumerate(testloader):
             inputs, targets = inputs.to(device), targets.to(device)
+            if(inputs.shape[0] != 64):
+                continue
             outputs = net(inputs)
             loss = criterion(outputs, targets)
 

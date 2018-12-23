@@ -14,7 +14,6 @@ class ParametricLog(torch.nn.Module):
 
     def forward(self, x):
         if(self.start == 0):
-            print(x.shape)
             self.c1 = Variable(torch.randn(x.shape))
             self.c2 = Variable(torch.randn(x.shape))
             self.c1 = self.c1.to(device)
