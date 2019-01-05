@@ -32,9 +32,9 @@ class BasicBlock(nn.Module):
             )
 
     def forward(self, x):
-        out = self.bn1(self.conv1(x))
+        out = self.conv1(x) # self.bn1(self.conv1(x))
         out = self.pl1(out) # F.relu(out)
-        out = self.bn2(self.conv2(out))
+        out = self.conv2(out) # self.bn2(self.conv2(out))
         out += self.shortcut(x)
         out = self.pl2(out) #F.relu(out)
         return out
@@ -65,11 +65,11 @@ class Bottleneck(nn.Module):
             )
 
     def forward(self, x):
-        out = self.bn1(self.conv1(x))        
+        out = self.conv1(x) #self.bn1(self.conv1(x))        
         out = self.pl1(out) # F.relu(out)
-        out = self.bn2(self.conv2(out))
+        out = self.conv2(out) #self.bn2(self.conv2(out))
         out = self.pl2(out) # F.relu(out)
-        out = self.bn3(self.conv3(out))
+        out = self.conv3(out) #self.bn3(self.conv3(out))
         out += self.shortcut(x)
         out = self.pl3(out) # F.relu(out)
         return out
@@ -99,7 +99,7 @@ class ResNet(nn.Module):
         return nn.Sequential(*layers)
 
     def forward(self, x):
-        out = self.bn1(self.conv1(x))
+        out = self.conv1(x) #self.bn1(self.conv1(x))
         out = self.pl1(out) # F.relu(out)
         out = self.layer1(out)
         out = self.layer2(out)
