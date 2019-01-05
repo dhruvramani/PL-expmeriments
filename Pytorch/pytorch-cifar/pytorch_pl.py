@@ -20,6 +20,7 @@ class ParametricLog(torch.nn.Module):
             self.c2 = self.c2.to(device)
             self.start = 1
 
-        pos = torch.log(F.relu(x) + torch.abs(self.c1) + 1) * (F.relu(x) / x)
-        neg = - torch.log(F.relu(-(x - torch.abs(x)) * 0.5) + torch.abs(self.c2) + 1) * ((-(x - torch.abs(x)) * 0.5) / x)
+        pos_v, neg_v = F.relu(x), (-(x - torch.abs(x)) * 0.5)
+        pos = torch.log(pos_v + torch.abs(self.c1) + 1) * (pos_v / x)
+        neg = - torch.log(neg_v + torch.abs(self.c2) + 1) * (neg_v / x)
         return pos + neg
