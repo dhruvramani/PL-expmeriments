@@ -22,6 +22,8 @@ from keras.datasets import cifar10
 import numpy as np
 import os
 
+from advanced_activations import ParametricLog
+
 # Training parameters
 batch_size = 32  # orig paper trained all networks with batch_size=128
 epochs = 90
@@ -141,12 +143,12 @@ def resnet_layer(inputs,
         if batch_normalization:
             x = BatchNormalization()(x)
         if activation is not None:
-            x = Activation(activation)(x)
+            x = ParametricLog(x) #Activation(activation)(x)
     else:
         if batch_normalization:
             x = BatchNormalization()(x)
         if activation is not None:
-            x = Activation(activation)(x)
+            x = ParametricLog(x) #Activation(activation)(x)
         x = conv(x)
     return x
 

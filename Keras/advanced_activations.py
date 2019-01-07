@@ -291,7 +291,7 @@ class ParametricLog(Layer):
     def __init__(self, const_initializer='ones', **kwargs):
         super(ParametricLog, self).__init__(**kwargs)
         self.supports_masking = True
-        self.const_initializer = initializers.get(const_initializer)
+        self.const_initializer = initializers.get(random_normal)
 
     def build(self, input_shape):
         param_shape = list(input_shape[1:])
