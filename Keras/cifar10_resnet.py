@@ -23,6 +23,7 @@ import numpy as np
 import os
 
 from advanced_activations import ParametricLog
+# 91.5
 
 # Training parameters
 batch_size = 32  # orig paper trained all networks with batch_size=128
