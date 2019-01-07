@@ -288,10 +288,10 @@ class ParametricLog(Layer):
         - TODO
     """
 
-    def __init__(self, const_initializer='ones', **kwargs):
+    def __init__(self, const_initializer='random', **kwargs):
         super(ParametricLog, self).__init__(**kwargs)
         self.supports_masking = True
-        self.const_initializer = initializers.get(const_initializer)
+        self.const_initializer = initializers.random_normal(stddev=0.01) #initializers.get(const_initializer)
 
     def build(self, input_shape):
         param_shape = list(input_shape[1:])
