@@ -42,7 +42,7 @@ def plot_models(files):
         print(filepath)
     plt.legend(loc=2, prop={'size': 30})
     plt.legend(['Parametric Log', 'ReLU'])
-    plt.ylabel('Loss')
+    plt.ylabel('Accuracy')
     plt.xlabel('Steps')
     plt.savefig("./Figures/{}.png".format("_".join(filepath.split("/")[-2:]).split(".")[0]))
     #plt.show()
@@ -50,5 +50,5 @@ def plot_models(files):
 
 if __name__ == '__main__':
     #write_table()
-    models = ['./Resnet/pl_val_acc.txt', './Resnet/relu_val_acc.txt']
+    models = ['./VGG/pl_val_acc.txt', './VGG/relu_val_acc.txt']
     plot_models(models)
